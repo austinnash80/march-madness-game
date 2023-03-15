@@ -33,7 +33,7 @@
 				<span class="text-center"><%= link_to 'View teams', group_path(id: group.id), class: 'btn btn-success' %></span>
 			<% else %>
 				<h3 class="text-center">
-					<% if pick_id == current_user %> 
+					<% if pick_id == current_user.id %> 
 						<span class="fw-bold text-success">Your Pick!</span>
 					<% else %>
 						On the clock: <span class="fw-bold text-success"><%= User.find_by(id: pick_id).email.titlecase %></span>

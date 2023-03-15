@@ -17,24 +17,21 @@
       <header>
         <div class="container-fluid">
           <div class="row">
-            <div class="col p-3">
-              <div class="row">
-                <div class="col-6">
+            <div class="col pt-2">
                   <% if current_user %>
-                    <p class=""><%= current_user.email.titlecase %><p>
-                    <%= link_to "Logout", logout_path, class: 'btn btn-outline-dark btn-sm' %>
+                    <p class="">
+                      <%= current_user.email.titlecase %><br>
+                      <%= link_to "Logout", logout_path, class: 'btn btn-outline-dark btn-sm' %>
+                    </p>
                   <% else %>
                     <%#= link_to "Sign Up", signup_path, class: 'btn btn-outline-primary' %>
                     <%= link_to "Login", login_path, class: 'btn btn-outline-dark' %>
                   <% end %>
-                </div>
-              </div>
-              
             </div>
-            <div class="col-6 text-center p-3">
+            <div class="col-6 text-center p-2">
               <h1 class=""><%= link_to 'March Madness Game', pages_home_path, class: 'header-text' %></h1>
             </div>
-            <div class="col p-3">
+            <div class="col pt-2 pb-2">
 
               <% unless current_user %>
                 <!-- Sign Up from -->

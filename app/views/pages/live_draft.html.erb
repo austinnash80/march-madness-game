@@ -33,7 +33,7 @@
 			<% else %>
 				<p>
 					<% if pick_id == current_user.id %> 
-						<span class="fw-bold text-success text-center"><big>Your Pick!</big></span>
+						<big><span class="fw-bold text-success text-center">Your Pick!</span></big>
 					<% else %>
 						<span class="fw-bold">Picking:</span> <span class="fw-bold text-success"><%= User.find_by(id: pick_id).email.titlecase %></span>
 					<% end %>

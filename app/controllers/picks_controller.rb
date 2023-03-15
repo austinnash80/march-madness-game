@@ -4,7 +4,7 @@ class PicksController < ApplicationController
   # GET /picks or /picks.json
   def index
     @picks = Pick.all
-        if params['draft'] == 'auto'
+      if params['draft'] == 'auto'
       # AUTO PICK LOGIC
         auto_draft
       Group.where(id: params['group_id']).update_all auto_draft_complete: true

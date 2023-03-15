@@ -5,7 +5,7 @@
     <h2>Groups</h2>
       <table class="table border table-hover">
           <thead class="table-light">
-          <tr>
+          <tr class="text-center">
             <th>Group Name</th>
             <th>Current Players</th>
           </tr>
@@ -17,7 +17,7 @@
             <% member_3 = User.where(id: (GroupMember.where(group_id: g.id).pluck(:user_id)[2])).pluck(:email)[0] %>
             <% member_4 = User.where(id: (GroupMember.where(group_id: g.id).pluck(:user_id)[3])).pluck(:email)[0] %>
             <% member_count = GroupMember.where(group_id: g.id).count %>
-          <tr>
+          <tr class="text-center">
             <td>
               <%= g.name %> 
               <br>

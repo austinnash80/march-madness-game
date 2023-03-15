@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :picks
+  resources :groups
+  resources :group_members
+  resources :schools
   get 'sessions/new'
   resources :users
   resources :sessions

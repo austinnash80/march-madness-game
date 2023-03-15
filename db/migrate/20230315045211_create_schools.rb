@@ -1,0 +1,18 @@
+class CreateSchools < ActiveRecord::Migration[7.0]
+  def change
+    create_table :schools do |t|
+      t.string :name
+      t.integer :seed
+      t.string :region
+      t.boolean :w1
+      t.boolean :w2
+      t.boolean :w3
+      t.boolean :w4
+      t.boolean :w5
+      t.string :w6
+      t.string :boolean
+
+      t.timestamps
+    end
+  end
+end

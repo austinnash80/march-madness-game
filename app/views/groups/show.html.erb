@@ -2,7 +2,7 @@
   <div class="card-body">
     <% member_ids = GroupMember.where(group_id: @group.id).pluck(:user_id) %>
     <h1 class="text-center"><%= @group.name %></h1>
-    <div class="p-5">
+    <div class="">
         <div class="row">
           <% member_ids.first(2).each do |group_member| %>
             <div class="col">

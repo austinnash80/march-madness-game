@@ -21,10 +21,10 @@
               <div class="row">
                 <div class="col-6">
                   <% if current_user %>
-                    <p class="text-center"><%= current_user.email.titlecase %><p>
-                    <%= link_to "Log Out", logout_path, class: 'btn btn-outline-dark btn-sm d-grid gap-2' %>
+                    <p class=""><%= current_user.email.titlecase %><p>
+                    <%= link_to "Logout", logout_path, class: 'btn btn-outline-dark btn-sm' %>
                   <% else %>
-                    <%= link_to "Log In", login_path, class: 'btn btn-outline-dark btn-sm d-grid gap-2' %>
+                    <%= link_to "Login", login_path, class: 'btn btn-outline-dark' %>
                   <% end %>
                 </div>
               </div>
@@ -42,12 +42,15 @@
                     <%= f.error_notification %>
                     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
                     <div class="form-inputs">
-                      <%= f.input :email, label: false, placeholder: 'Name', input_html: {class: 'form-control input_text_box'} %>
-                      <br>
-                      <%= f.input :password, label: false, placeholder: 'Password', input_html: {class: 'form-control input_text_box'} %>
+                      <div class="pb-2">
+                        <%= f.input :email, label: false, placeholder: 'Name', input_html: {class: 'form-control input_text_box'} %>
+                      </div>
+                      <div class="pb-2">
+                        <%= f.input :password, label: false, placeholder: 'Password', input_html: {class: 'form-control input_text_box'} %>
+                      </div>
                     </div>
-                    <br>
-                    <div class="form-actions d-grid gap-2">
+                    
+                    <div class="form-actions">
                       <%= f.button :submit, 'Sign up', class: 'btn btn-primary btn-sm' %>
                     </div>
                   <% end %>

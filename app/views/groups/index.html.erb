@@ -6,6 +6,7 @@
       <table class="table border">
           <thead class="table-light">
           <tr class="text-center">
+            <th>ID</th>
             <th>Group Name</th>
             <th>Current Players</th>
           </tr>
@@ -18,6 +19,7 @@
             <% member_4 = User.where(id: (GroupMember.where(group_id: g.id).pluck(:user_id)[3])).pluck(:email)[0] %>
             <% member_count = GroupMember.where(group_id: g.id).count %>
           <tr class="text-center">
+            <td>ID: <%= g.id %></td>
             <td>
               <%= g.name %> 
               <br><br>

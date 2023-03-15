@@ -4,6 +4,7 @@
     <table class="table border table-hover">
         <thead class="table-light">
         <tr>
+          <th>PID</th>
           <th>Group ID</th>
           <th>User ID</th>
           <th>School ID</th>
@@ -12,6 +13,7 @@
       <tbody>
         <% @picks.each do |i| %>
         <tr>
+          <td class="text-muted"><small><%= i.id %></small></td>
           <td><%= i.group_id %></td>
           <td><%= i.user_id %></td>
           <td><%= i.school_id %></td>

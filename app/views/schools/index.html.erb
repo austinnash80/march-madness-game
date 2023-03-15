@@ -6,6 +6,7 @@
         <!-- <caption class="caption-top">South Region</caption> -->
         <thead class="table-light">
         <tr>
+          <th>SID</th>
           <th>Seed</th>
           <th>School</th>
           <th>Region</th>
@@ -14,6 +15,7 @@
       <tbody>
         <% @schools.order(:seed).order(:region).each do |s| %>
         <tr>
+          <td class="text-muted"><small><%= s.id %></small>s</td>
           <td><%= s.seed %></td>
           <td><%= s.name %></td>
           <td><%= s.region %></td>

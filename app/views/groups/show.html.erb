@@ -2,9 +2,10 @@
   <div class="card-body">
     <% member_ids = GroupMember.where(group_id: @group.id).pluck(:user_id) %>
     <% if @group.live_draft_start? && @group.live_draft_complete? == false %>
-      <%= link_to 'Go to live draft', pages_live_draft_path(draft: 'live', group_id: @group.id), class: 'btn btn-primary' %>
+      <div class="text-center"><%= link_to 'Go to live draft', pages_live_draft_path(draft: 'live', group_id: @group.id), class: 'btn btn-primary' %></div><br>
     <% end %>
     <h1 class="text-center"><%= @group.name %></h1>
+    <p><span class="fw-bold">Details:</span> <%= group.note_1 %></p> -->
     <div class="">
         <div class="row">
           <% member_ids.first(2).each do |group_member| %>

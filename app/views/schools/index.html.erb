@@ -15,7 +15,7 @@
       <tbody>
         <% @schools.order(:seed).order(:region).each do |s| %>
         <tr>
-          <td class="text-muted"><small><%= s.id %></small>s</td>
+          <td class="text-muted"><small><%= s.id %></small></td>
           <td><%= s.seed %></td>
           <td><%= s.name %></td>
           <td><%= s.region %></td>

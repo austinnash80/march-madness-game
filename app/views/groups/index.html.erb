@@ -6,20 +6,20 @@
       <table class="table border">
           <thead class="table-light">
           <tr class="text-center">
-            <th>ID</th>
+            <th class="text-muted">ID</th>
             <th>Group Name</th>
             <th>Current Players</th>
           </tr>
         </thead>
         <tbody>
-          <% @groups.each do |g| %>
+          <% @groups.order(:id).each do |g| %>
             <% member_1 = User.where(id: (GroupMember.where(group_id: g.id).pluck(:user_id)[0])).pluck(:email)[0] %>
             <% member_2 = User.where(id: (GroupMember.where(group_id: g.id).pluck(:user_id)[1])).pluck(:email)[0] %>
             <% member_3 = User.where(id: (GroupMember.where(group_id: g.id).pluck(:user_id)[2])).pluck(:email)[0] %>
             <% member_4 = User.where(id: (GroupMember.where(group_id: g.id).pluck(:user_id)[3])).pluck(:email)[0] %>
             <% member_count = GroupMember.where(group_id: g.id).count %>
           <tr class="text-center">
-            <td>ID: <%= g.id %></td>
+            <td class="text-muted"><small>ID: <%= g.id %></small></td>
             <td>
               <%= g.name %> 
               <br><br>

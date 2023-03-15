@@ -33,9 +33,9 @@
 			<% else %>
 				<p>
 					<% if pick_id == current_user.id %> 
-						<span class="fw-bold text-success">Your Pick!</span>
+						<span class="fw-bold text-success text-center"><big>Your Pick!</big></span>
 					<% else %>
-						<span class="fw-bold">On the clock:</span> <span class="fw-bold text-success"><%= User.find_by(id: pick_id).email.titlecase %></span>
+						<span class="fw-bold">Picking:</span> <span class="fw-bold text-success"><%= User.find_by(id: pick_id).email.titlecase %></span>
 					<% end %>
 					<br><span class="">Pick <%= total_picks_made + 2 %>:</span> <%= User.find_by(id: @total_draft[total_picks_made + 1]).email.titlecase %>
 					<br><span class="">Pick: <%= total_picks_made + 3 %>:</span> <%= User.find_by(id: @total_draft[total_picks_made + 2]).email.titlecase %>

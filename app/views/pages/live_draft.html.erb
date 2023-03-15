@@ -9,14 +9,15 @@
    <% picks = Pick.where(group_id: group.id).pluck(:school_id) %>
    <% all_seeds = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16] %>
    <% @total_draft %>
-   <br>
    <% Pick.where(group_id: group.id).count %>
-	<br>
 	<% @total_draft[Pick.where(group_id: group.id).count] %>
 	<% pick_id = @total_draft[Pick.where(group_id: group.id).count] %>
 	<% if Pick.where(group_id: group.id).count == 64 %>
 		<% Group.where(id: group.id).update_al live_draft_complete: true %>
 	<% end %>
+
+	<% total_picks_made = Pick.where(group_id: group.id).count %>
+	<% next_pick = @total_draft[total_picks_made] %>
 
 
 <div class="card">
@@ -24,9 +25,9 @@
 		<h2>Live Draft</h2>
 		<p><span class="fw-bold">Group name:</span> <%= group.name %></p>
 		<p><span class="fw-bold">Snake draft order:</span><br> 1. <%= member_1.email.titlecase %><br>2. <%= member_2.email.titlecase %><br>3. <%= member_3.email.titlecase %><br>4. <%= member_4.email.titlecase %></p>	
-		<p><span class="fw-bold">Total picks made:</span> <%= Pick.where(group_id: group.id).count %></p>
+		<p><span class="fw-bold">Total picks made:</span> <%= total_picks_made %></p>
 		<% unless Pick.where(group_id: group.id).count == 64 %><%= link_to 'View teams', group_path(id: group.id), class: 'btn btn-outline-secondary' %><% end %>
-			
+			<br>
 			<% if Pick.where(group_id: group.id).count == 64 %>
 				<h3 class="text-center">Draft is over </h3>
 				<span class="text-center"><%= link_to 'View teams', group_path(id: group.id), class: 'btn btn-success' %></span>
@@ -55,9 +56,9 @@
 							<td><a href="#" class="btn btn-outline-primary form-control btn-sm disabled" role="button" aria-disabled="true"><%= User.where(id: (Pick.where(group_id: group.id, school_id: s.id).pluck(:user_id)[0])).pluck(:email)[0].titlecase %></a></td>
 			
 							<% elsif current_user.id == pick_id %>
-							<td><%= link_to  'Draft Team', picks_path(draft: 'live', user_id: current_user.id, group_id: group.id, school_id: s.id), class: 'btn btn-outline-success form-control btn-sm' %></td>						
+							<td><%= link_to  'Draft', picks_path(draft: 'live', user_id: current_user.id, group_id: group.id, school_id: s.id), class: 'btn btn-outline-success form-control btn-sm' %></td>						
 							<% else %>
-							<td><a href="#" class="btn btn-outline-secondary form-control btn-sm disabled" role="button" aria-disabled="true">Draft Team</a></td>
+							<td><a href="#" class="btn btn-outline-secondary form-control btn-sm disabled" role="button" aria-disabled="true">Draft</a></td>
 							<% end %>
 						</tr>
 						<% end %>
@@ -83,9 +84,9 @@
 							<% if picks.include? s.id %>
 							<td class="text-primary fw-bold text-center"><%= link_to "#{ User.where(id: (Pick.where(group_id: group.id, school_id: s.id).pluck(:user_id)[0])).pluck(:email)[0].titlecase}'s Team", pages_live_draft_path(), class: 'btn btn-outline-primary form-control btn-sm' %></td>
 							<% elsif current_user.id == pick_id %>
-							<td><%= link_to  'Draft Team', picks_path(draft: 'live', user_id: current_user.id, group_id: group.id, school_id: s.id), class: 'btn btn-outline-success form-control btn-sm' %></td>						
+							<td><%= link_to  'Draft', picks_path(draft: 'live', user_id: current_user.id, group_id: group.id, school_id: s.id), class: 'btn btn-outline-success form-control btn-sm' %></td>						
 							<% else %>
-							<td><a href="#" class="btn btn-outline-secondary form-control btn-sm disabled" role="button" aria-disabled="true">Draft Team</a></td>
+							<td><a href="#" class="btn btn-outline-secondary form-control btn-sm disabled" role="button" aria-disabled="true">Draft</a></td>
 							<% end %>
 						</tr>
 						<% end %>
@@ -96,3 +97,12 @@
 	
 	</div>
 </div>
+
+
+<% if current_user.id == @total_draft[total_picks_made] %>
+    <script>
+	   setTimeout(function(){
+	       location.reload();
+	   },8000); // 3000 milliseconds means 3 seconds.
+   </script>
+ <% end %>

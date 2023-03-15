@@ -20,7 +20,7 @@
           <tr class="text-center">
             <td>
               <%= g.name %> 
-              <br>
+              <br><br>
               <% if g.auto_draft_complete? || g.live_draft_complete? %>
                 <%= link_to 'Draft Complete', group_path(id: g.id), class: 'btn btn-outline-success btn-sm form-control' %>
             <% elsif g.live_draft_start? %>

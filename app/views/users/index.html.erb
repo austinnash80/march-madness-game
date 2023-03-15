@@ -7,6 +7,7 @@
         <tr>
           <th>User ID</th>
           <th>Name</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -14,6 +15,7 @@
         <tr>
           <td><%= i.id %></td>
           <td><%= i.email.titlecase %></td>
+          <td><%= link_to 'Edit', edit_user_path(id: i.id) %></td>
         </tr>
         <% end %>
       </tbody>

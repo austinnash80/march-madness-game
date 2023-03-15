@@ -14,6 +14,9 @@
 	<br>
 	<% @total_draft[Pick.where(group_id: group.id).count] %>
 	<% pick_id = @total_draft[Pick.where(group_id: group.id).count] %>
+	<% if Pick.where(group_id: group.id).count == 64 %>
+		<% Group.where(id: group.id).update_al live_draft_complete: true %>
+	<% end %>
 
 
 <div class="card">

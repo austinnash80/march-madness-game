@@ -3,6 +3,9 @@ class GroupsController < ApplicationController
 
   # GET /groups or /groups.json
   def index
+    if current_user.present? == false
+      redirect_to login_url(need_login: 'y')
+    end
     @groups = Group.all
     if params['join_group'] == 'yes'
       GroupMember.create(
@@ -34,7 +37,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.save
-        format.html { redirect_to group_url(@group), notice: "Group was successfully created." }
+        format.html { redirect_to groups_url(@group), notice: "Group was successfully created." }
         format.json { render :show, status: :created, location: @group }
       else
         format.html { render :new, status: :unprocessable_entity }

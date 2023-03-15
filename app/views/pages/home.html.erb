@@ -12,7 +12,11 @@
 						<% my_groups = GroupMember.where(user_id: current_user.id).pluck(:group_id) %>
 						<% Group.where(id: my_groups).each do |i| %>
 							<tr>
-								<td class="text-primary"><%= link_to i.name, group_path(id: i.id) %></td>
+								<% if i.live_draft_start? && i.live_draft_complete? == false %>
+									<td class="text-primary"><%= link_to "#{i.name} - Enter Draft", pages_live_draft_path(group_id: i.id) %></td>
+								<% else %>
+									<td class="text-primary"><%= link_to i.name, group_path(id: i.id) %></td>
+								<% end %> 
 							</tr>
 						<% end %>
 					</tbody>

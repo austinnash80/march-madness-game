@@ -31,16 +31,14 @@
 				<h3 class="text-center">Draft is over </h3>
 				<span class="text-center"><%= link_to 'View teams', group_path(id: group.id), class: 'btn btn-success' %></span>
 			<% else %>
-				<h3 class="">
 					<% if pick_id == current_user.id %> 
-						<span class="fw-bold text-success">Your Pick!</span>
+						<p class="fw-bold text-success">Your Pick!</p>
 					<% else %>
-						On the clock: <span class="fw-bold text-success"><%= User.find_by(id: pick_id).email.titlecase %></span>
+						<p class="fw-bold">On the clock: <span class="fw-bold text-success"><%= User.find_by(id: pick_id).email.titlecase %></span></p>
 					<% end %>
-				</h3>
-				<p class="">Pick <%= total_picks_made + 2 %>: <%= User.find_by(id: @total_draft[total_picks_made + 1]).email.titlecase %>
-					<br>Pick <%= total_picks_made + 3 %>: <%= User.find_by(id: @total_draft[total_picks_made + 2]).email.titlecase %>
-					<br>Pick <%= total_picks_made + 4 %>: <%= User.find_by(id: @total_draft[total_picks_made + 3]).email.titlecase %>
+				<p class=""><span class="fw-bold">Pick:</span> <%= total_picks_made + 2 %>: <%= User.find_by(id: @total_draft[total_picks_made + 1]).email.titlecase %>
+					<br><span class="fw-bold">Pick:</span> <%= total_picks_made + 3 %>: <%= User.find_by(id: @total_draft[total_picks_made + 2]).email.titlecase %>
+					<br><span class="fw-bold">Pick:</span> <%= total_picks_made + 4 %>: <%= User.find_by(id: @total_draft[total_picks_made + 3]).email.titlecase %>
 				</p>
 			<% end %>
 		<div class="pb-3"><%= link_to 'View selections', group_path(id: group.id), class: 'btn btn-outline-primary' %></div>

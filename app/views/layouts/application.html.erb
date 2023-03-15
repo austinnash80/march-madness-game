@@ -17,7 +17,7 @@
       <header>
         <div class="container-fluid">
           <div class="row">
-            <div class="col pt-2">
+            <div class="col-3 pt-2">
                   <% if current_user %>
                     <p class="">
                       <%= current_user.email.titlecase %><br>
@@ -29,9 +29,9 @@
                   <% end %>
             </div>
             <div class="col-6 text-center p-2">
-              <h1 class=""><%= link_to 'March Madness', pages_home_path, class: 'header-text' %></h1>
+              <h1 class=""><%= link_to 'March Madness', pages_home_path, class: 'header-text' %></h>
             </div>
-            <div class="col pt-2 pb-2">
+            <div class="col-3 pt-2 pb-2">
 
               <% unless current_user %>
                 <!-- Sign Up from -->
@@ -44,7 +44,7 @@
                         <%= f.input :email, label: false, placeholder: 'Name', input_html: {class: 'form-control input_text_box'} %>
                       </div>
                       <div class="pb-2">
-                        <%= f.input :password, label: false, placeholder: 'Password', input_html: {class: 'form-control input_text_box'} %>
+                        <%= f.input :password, label: false, placeholder: 'PW', input_html: {class: 'form-control input_text_box'} %>
                       </div>
                     </div>
                     

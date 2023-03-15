@@ -22,10 +22,10 @@
                 <div class="col-6">
                   <% if current_user %>
                     <p class=""><%= current_user.email.titlecase %><p>
-                    <%= link_to "Log Out", logout_path, class: 'btn btn-outline-dark btn-sm' %>
+                    <%= link_to "Logout", logout_path, class: 'btn btn-outline-dark btn-sm' %>
                   <% else %>
                     <%#= link_to "Sign Up", signup_path, class: 'btn btn-outline-primary' %>
-                    <%= link_to "Log In", login_path, class: 'btn btn-outline-dark' %>
+                    <%= link_to "Login", login_path, class: 'btn btn-outline-dark' %>
                   <% end %>
                 </div>
               </div>

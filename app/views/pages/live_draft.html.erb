@@ -33,6 +33,7 @@
 				<span class="text-center"><%= link_to 'View teams', group_path(id: group.id), class: 'btn btn-success' %></span>
 			<% else %>
 				<h3 class="text-center">On the clock: <span class="fw-bold text-success"><%= User.find_by(id: pick_id).email.titlecase %></span></h3>
+				<h3 class="text-center">Up next: <%= User.find_by(id: @total_draft[total_picks_made + 1]).email.titlecase %></h3>
 			<% end %>
 
 		<div class="row">
@@ -99,7 +100,7 @@
 </div>
 
 
-<% if current_user.id == @total_draft[total_picks_made] %>
+<% if current_user.id == @total_draft[total_picks_made + 1] %>
     <script>
 	   setTimeout(function(){
 	       location.reload();

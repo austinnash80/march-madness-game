@@ -1,6 +1,9 @@
 <div class="card">
   <div class="card-body">
     <% member_ids = GroupMember.where(group_id: @group.id).pluck(:user_id) %>
+    <% if @group.live_draft_start? && @group.live_draft_complete? == false %>
+      <%= link_to 'Go to live draft', pages_live_draft_path(draft: 'live', group_id: @group.id), class: 'btn btn-primary' %>
+    <% end %>
     <h1 class="text-center"><%= @group.name %></h1>
     <div class="">
         <div class="row">

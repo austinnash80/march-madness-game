@@ -24,9 +24,9 @@
 	<div class="card-body">
 		<h2>Live Draft</h2>
 		<p><span class="fw-bold">Group name:</span> <%= group.name %></p>
-		<p><span class="fw-bold">Snake draft order:</span><br> 1. <%= member_1.email.titlecase %><br>2. <%= member_2.email.titlecase %><br>3. <%= member_3.email.titlecase %><br>4. <%= member_4.email.titlecase %></p>	
+		<p><span class="fw-bold">Details:</span> <%= group.note_1 %></p>
+		<!-- <p><span class="fw-bold">Snake draft order:</span><br> 1. <%= member_1.email.titlecase %><br>2. <%= member_2.email.titlecase %><br>3. <%= member_3.email.titlecase %><br>4. <%= member_4.email.titlecase %></p>	 -->
 		<p><span class="fw-bold">Total picks made:</span> <%= total_picks_made %></p>
-		<% unless Pick.where(group_id: group.id).count == 64 %><%= link_to 'View teams', group_path(id: group.id), class: 'btn btn-outline-secondary' %><% end %>
 			<br>
 			<% if Pick.where(group_id: group.id).count == 64 %>
 				<h3 class="text-center">Draft is over </h3>
@@ -40,8 +40,10 @@
 					<% end %>
 				</h3>
 				<p class="text-center">Up next: <%= User.find_by(id: @total_draft[total_picks_made + 1]).email.titlecase %></p>
+				<p class="text-center">Up next: <%= User.find_by(id: @total_draft[total_picks_made + 2]).email.titlecase %></p>
+				<p class="text-center">Up next: <%= User.find_by(id: @total_draft[total_picks_made + 3]).email.titlecase %></p>
 			<% end %>
-
+		<%= link_to 'View selections', group_path(id: group.id), class: 'btn btn-outline-secondary' %>
 		<div class="row">
 			<div class="col">
 				<table class="table border table-hover">

@@ -37,9 +37,9 @@
 					<% else %>
 						<span class="fw-bold">On the clock: <span class="fw-bold text-success"><%= User.find_by(id: pick_id).email.titlecase %></span>
 					<% end %>
-					<span class="fw-bold">Pick <%= total_picks_made + 2 %>:</span> <%= User.find_by(id: @total_draft[total_picks_made + 1]).email.titlecase %>
-					<br><span class="fw-bold">Pick: <%= total_picks_made + 3 %>:</span> <%= User.find_by(id: @total_draft[total_picks_made + 2]).email.titlecase %>
-					<br><span class="fw-bold">Pick: <%= total_picks_made + 4 %>:</span> <%= User.find_by(id: @total_draft[total_picks_made + 3]).email.titlecase %>
+					<br><span class="">Pick <%= total_picks_made + 2 %>:</span> <%= User.find_by(id: @total_draft[total_picks_made + 1]).email.titlecase %>
+					<br><span class="">Pick: <%= total_picks_made + 3 %>:</span> <%= User.find_by(id: @total_draft[total_picks_made + 2]).email.titlecase %>
+					<br><span class="">Pick: <%= total_picks_made + 4 %>:</span> <%= User.find_by(id: @total_draft[total_picks_made + 3]).email.titlecase %>
 				</p>
 			<% end %>
 		<div class="pb-3"><%= link_to 'View selections', group_path(id: group.id), class: 'btn btn-outline-primary' %></div>

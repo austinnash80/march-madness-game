@@ -17,6 +17,7 @@
 	<% end %>
 
 	<% total_picks_made = Pick.where(group_id: group.id).count %>
+	<% schools_picked = Pick.where(group_id: group.id).pluck(:id) %>
 	<% next_pick = @total_draft[total_picks_made] %>
 
 
@@ -24,7 +25,7 @@
 	<div class="card-body">
 		<h2>Live Draft</h2>
 		<p><span class="fw-bold">Group name:</span> <%= group.name %></p>
-		<p><span class="fw-bold">Details:</span> <%= group.note_1 %></p>
+		<!-- <p><span class="fw-bold">Details:</span> <%= group.note_1 %></p> -->
 		<!-- <p><span class="fw-bold">Snake draft order:</span><br> 1. <%= member_1.email.titlecase %><br>2. <%= member_2.email.titlecase %><br>3. <%= member_3.email.titlecase %><br>4. <%= member_4.email.titlecase %></p>	 -->
 		<p><span class="fw-bold">Total picks made:</span> <%= total_picks_made %></p>
 			<% if Pick.where(group_id: group.id).count == 64 %>
@@ -38,15 +39,12 @@
 						On the clock: <span class="fw-bold text-success"><%= User.find_by(id: pick_id).email.titlecase %></span>
 					<% end %>
 				</h3>
-				<p class="text-center">Up next: <%= User.find_by(id: @total_draft[total_picks_made + 1]).email.titlecase %>
-					<br>Next: <%= User.find_by(id: @total_draft[total_picks_made + 2]).email.titlecase %>
+				<p class="text-center"><span class="fw-bold">Up next:</span> <%= User.find_by(id: @total_draft[total_picks_made + 1]).email.titlecase %>
+					<br><%= User.find_by(id: @total_draft[total_picks_made + 2]).email.titlecase %>
 					<br><%= User.find_by(id: @total_draft[total_picks_made + 3]).email.titlecase %>
-					<br><%= User.find_by(id: @total_draft[total_picks_made + 4]).email.titlecase %>
 				</p>
 			<% end %>
-		<div class="text-center p-3"><%= link_to 'View selections', group_path(id: group.id), class: 'btn btn-outline-secondary' %></div>
-		<div class="row">
-			<div class="col">
+		<div class="text-center pb-3"><%= link_to 'View selections', group_path(id: group.id), class: 'btn btn-outline-primary' %></div>
 				<table class="table border table-hover">
 					<thead class="table-light">
 						<tr>
@@ -57,7 +55,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<% School.where(seed: 1..8).all.order(:seed).order(:region).each do |s| %>
+						<% School.where.not(id: schools_picked).all.order(:seed).order(:region).each do |s| %>
 						<tr>
 							<td><%= s.seed %></td>
 							<td><%= s.name %></td>
@@ -74,37 +72,6 @@
 						<% end %>
 					</tbody>
 				</table> 
-			</div>
-			<div class="col">
-				<table class="table border table-hover">
-					<thead class="table-light">
-						<tr>
-							<th>Seed</th>
-							<th>School</th>
-							<th>Region</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<% School.where(seed: 9..16).all.order(:seed).order(:region).each do |s| %>
-						<tr>
-							<td><%= s.seed %></td>
-							<td><%= s.name %></td>
-							<td><%= s.region %></td>
-							<% if picks.include? s.id %>
-							<td class="text-primary fw-bold text-center"><%= link_to "#{ User.where(id: (Pick.where(group_id: group.id, school_id: s.id).pluck(:user_id)[0])).pluck(:email)[0].titlecase}'s Team", pages_live_draft_path(), class: 'btn btn-outline-primary form-control btn-sm' %></td>
-							<% elsif current_user.id == pick_id %>
-							<td><%= link_to  'Draft', picks_path(draft: 'live', user_id: current_user.id, group_id: group.id, school_id: s.id), class: 'btn btn-outline-success form-control btn-sm' %></td>						
-							<% else %>
-							<td><a href="#" class="btn btn-outline-secondary form-control btn-sm disabled" role="button" aria-disabled="true">Draft</a></td>
-							<% end %>
-						</tr>
-						<% end %>
-					</tbody>
-				</table> 
-			</div>
-		</div>
-	
 	</div>
 </div>
 
@@ -113,6 +80,6 @@
     <script>
 	   setTimeout(function(){
 	       location.reload();
-	   },10000); // 3000 milliseconds means 3 seconds.
+	   },9000); // 3000 milliseconds means 3 seconds.
    </script>
  <%# end %>

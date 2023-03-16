@@ -12,7 +12,7 @@
 	<% @total_draft[Pick.where(group_id: group.id).count] %>
 	<% pick_id = @total_draft[Pick.where(group_id: group.id).count] %>
 	<% if Pick.where(group_id: group.id).count == 64 %>
-		<% Group.where(id: group.id).update_al live_draft_complete: true %>
+		<% Group.where(id: group.id).update_all live_draft_complete: true %>
 	<% end %>
 
 	<% total_picks_made = Pick.where(group_id: group.id).count %>
@@ -37,12 +37,12 @@
 					<% else %>
 						<span class="fw-bold">Picking:</span> <span class="fw-bold text-success"><%= User.find_by(id: pick_id).email.titlecase %></span>
 					<% end %>
-					<br><span class="">Pick <%= total_picks_made + 2 %>:</span> <%= User.find_by(id: @total_draft[total_picks_made + 1]).email.titlecase %>
-					<br><span class="">Pick <%= total_picks_made + 3 %>:</span> <%= User.find_by(id: @total_draft[total_picks_made + 2]).email.titlecase %>
-					<br><span class="">Pick <%= total_picks_made + 4 %>:</span> <%= User.find_by(id: @total_draft[total_picks_made + 3]).email.titlecase %>
+					<% if total_picks_made < 63 %><br><span class="">Pick <%= total_picks_made + 2 %>:</span> <%= User.find_by(id: @total_draft[total_picks_made + 1]).email.titlecase %><% end %>
+					<% if total_picks_made < 62 %><br><span class="">Pick <%= total_picks_made + 3 %>:</span> <%= User.find_by(id: @total_draft[total_picks_made + 2]).email.titlecase %><% end %>
+					<% if total_picks_made < 61 %><br><span class="">Pick <%= total_picks_made + 4 %>:</span> <%= User.find_by(id: @total_draft[total_picks_made + 3]).email.titlecase %><% end %>
 				</p>
 			<% end %>
-		<div class="pb-3"><%= link_to 'View selections', group_path(id: group.id), class: 'btn btn-outline-primary' %></div>
+			<% unless total_picks_made == 64 %><div class="pb-3"><%= link_to 'View selections', group_path(id: group.id), class: 'btn btn-outline-primary' %></div><% end %>
 				<table class="table border table-hover">
 					<thead class="table-light">
 						<tr>

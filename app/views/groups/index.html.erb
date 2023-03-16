@@ -5,10 +5,10 @@
     <h2>Groups</h2>
       <table class="table border">
           <thead class="table-light">
-          <tr class="text-center">
+          <tr class="">
             <th class="text-muted">ID</th>
-            <th>Group Name</th>
-            <th>Current Players</th>
+            <th class="text-center">Group Name</th>
+            <th class="text-center">Current Players</th>
           </tr>
         </thead>
         <tbody>
@@ -18,13 +18,13 @@
             <% member_3 = User.where(id: (GroupMember.where(group_id: g.id).pluck(:user_id)[2])).pluck(:email)[0] %>
             <% member_4 = User.where(id: (GroupMember.where(group_id: g.id).pluck(:user_id)[3])).pluck(:email)[0] %>
             <% member_count = GroupMember.where(group_id: g.id).count %>
-          <tr class="text-center">
+          <tr class="">
             <td class="text-muted"><small>ID: <%= g.id %></small></td>
-            <td>
+            <td class="text-center">
               <%= g.name %> 
               <br><br>
               <% if g.auto_draft_complete? || g.live_draft_complete? %>
-                <%= link_to 'Draft Complete', group_path(id: g.id), class: 'btn btn-outline-success btn-sm form-control' %>
+                <%= link_to 'View Standings', group_path(id: g.id), class: 'btn btn-outline-success btn-sm form-control' %>
             <% elsif g.live_draft_start? %>
               <%= link_to 'Enter Live Draft', pages_live_draft_path(draft: 'live', group_id: g.id), class: 'btn btn-outline-primary btn-sm form-control' %>
             <% elsif member_count == 4 %>
@@ -39,7 +39,7 @@
               <%= link_to 'Join Group', groups_path(join_group: 'yes', uid: current_user.id, gid: g.id), class: 'btn btn-outline-primary btn-sm form-control' %>
             <% end %>
             </td>
-            <td>
+            <td class="text-center">
               <%= member_1.to_s.titlecase %><br> <%= member_2.to_s.titlecase %><br> <%= member_3.to_s.titlecase %><br> <%= member_4.to_s.titlecase %>
             </td>
           </tr>

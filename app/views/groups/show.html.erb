@@ -19,7 +19,7 @@
                     <th>Points</th>
                   </thead>
                 <tbody>
-                  <% Pick.where(group_id: @group.id, user_id: group_member).all.each do |i| %>
+                  <% Pick.where(group_id: @group.id, user_id: group_member).order(:created_at).all.each do |i| %>
                     <tr>
                       <td><%= School.where(id: i.school_id).pluck(:seed)[0] %></td>
                       <td><%= School.where(id: i.school_id).pluck(:name)[0] %></td>
